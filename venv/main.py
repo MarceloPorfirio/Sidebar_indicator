@@ -16,11 +16,43 @@ class App(UserControl):
                     spacing=0, # define o espaço entre os dois containers
                     controls=[
                     Container(
-                        bgcolor='brown',
+                        padding=padding.only(top=50,),
+                        bgcolor='white',
                         width=80,
+                        content=Row(
+                            # spacing=0,
+                            controls=[
+                                Column(
+                                    expand=True,
+                                    controls=[
+                                        Row(
+                                            controls=[
+                                                Container(
+                                                    expand=True,
+                                                    height=40,
+                                                    content=Icon(
+                                                        icons.CHAT_BUBBLE,
+                                                        color='blue'
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    ]
+                                    
+                                        
+                                      
+                                ),
+                                Column(
+                                    
+                                    controls=[
+                                        Container(bgcolor='red',width=3,height=40)
+                                    ]
+                                )
+                            ]
+                        )
                     ), # sidebar
                     Container(
-                        bgcolor='red',
+                        bgcolor='green',
                         expand=True
                     ), # main screen
                 ]
