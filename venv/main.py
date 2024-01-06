@@ -6,8 +6,21 @@ class App(UserControl):
 
         self.pg = pg
         self.init_helper()
+
+    def switch_page(self,e):
+        self.indicator.offset.y = e.control.data
+        self.indicator.update()
     
     def init_helper(self):
+        self.indicator = Container(
+            bgcolor='red',
+            width=3,
+            height=40,
+            offset=transform.Offset(0,0),
+            animate_offset=Animation(500,AnimationCurve.DECELERATE)
+            )
+        
+
         self.pg.add(
             Container(
                 expand=True,
@@ -28,12 +41,28 @@ class App(UserControl):
                                         Row(
                                             controls=[
                                                 Container(
+                                                    on_click=self.switch_page,
                                                     expand=True,
                                                     height=40,
                                                     content=Icon(
                                                         icons.CHAT_BUBBLE,
                                                         color='blue'
-                                                    )
+                                                    ),
+                                                    data=0 # definimos para usar na troca de icone
+                                                )
+                                            ]
+                                        ),
+                                        Row(
+                                            controls=[
+                                                Container(
+                                                    on_click=self.switch_page,
+                                                    expand=True,
+                                                    height=40,
+                                                    content=Icon(
+                                                        icons.DASHBOARD,
+                                                        color='blue'
+                                                    ),
+                                                    data=1
                                                 )
                                             ]
                                         )
@@ -45,7 +74,7 @@ class App(UserControl):
                                 Column(
                                     
                                     controls=[
-                                        Container(bgcolor='red',width=3,height=40)
+                                        self.indicator
                                     ]
                                 )
                             ]
